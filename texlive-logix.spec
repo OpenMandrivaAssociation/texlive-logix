@@ -1,6 +1,6 @@
 Name:		texlive-logix
 Version:	63688
-Release:	1
+Release:	2
 Summary:	Supplement to the Unicode math symbols
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/logix
