@@ -1,40 +1,23 @@
-Name:		texlive-logix
-Version:	63688
-Release:	2
+%global tl_name logix
+%global tl_revision 63688
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.13
+Release:	%{tl_revision}.1
 Summary:	Supplement to the Unicode math symbols
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/logix
+URL:		https://www.ctan.org/tex-archive/fonts/logix
 License:	ofl lppl1.3c
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/logix.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/logix.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/logix.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/logix.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
 The package provides a Unicode font with over 4,000 symbols to
 supplement the Unicode math symbols. It is compatible with and
-complements the AMS STIX2 math fonts, but focuses on new
-symbols and symbol variants more suited to work in logic.
+complements the AMS STIX2 math fonts, but focuses on new symbols and
+symbol variants more suited to work in logic.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/logix
-%{_texmfdistdir}/fonts/truetype/public/logix
-%{_texmfdistdir}/fonts/opentype/public/logix
-%doc %{_texmfdistdir}/doc/fonts/logix
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
